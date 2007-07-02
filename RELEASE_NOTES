@@ -1,0 +1,21 @@
+#==============================================================
+#
+#  Name: RELEASE_NOTES
+#
+#  Rem:  This file contains the release notes for genSub 
+#        record pertains to the LCLS release format and procedures.
+#        
+#        The author of this software is Andy Foster.
+#
+#  Side: see docs/genSubManual.pdf
+#
+#  Auth: 02-Jun-2007, K. Luchini         (LUCHINI)
+#  Rev:  dd-mmm-yyyy, Reviewer's Name    (USERNAME)
+#--------------------------------------------------------------
+#  Mod:
+#        dd-mmm-yyyy, First Lastname      (USERNAME)
+#          comment
+#
+#==============================================================
+#
+genSub-R1-0-0: Initial release used in LCLS Injector and BC1.
