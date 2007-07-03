@@ -18,4 +18,6 @@
 #
 #==============================================================
 #
+genSub-R1-0-1: Allow build for rtems 
+
 genSub-R1-0-0: Initial release used in LCLS Injector and BC1.
