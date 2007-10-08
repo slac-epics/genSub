@@ -13,11 +13,16 @@
 #  Rev:  dd-mmm-yyyy, Reviewer's Name    (USERNAME)
 #--------------------------------------------------------------
 #  Mod:
-#        dd-mmm-yyyy, First Lastname      (USERNAME)
-#          comment
+#        08-Oct-2007, K. Luchini         (LUCHINI):
+#          add release genSub-R1-6-lcls1
+#        26-Sep-2007, E. Williams        (ERNESTO):
+#          add release genSub-R1-0-1
 #
 #==============================================================
 #
+genSub-1-6-lcls1 Build with base-R3-14-8-lcls2 (RTEMS 4.7.1)
+
 genSub-R1-0-1: Allow build for rtems 
+               Build with base-R3-14-8-2-lcls1 (RTEMS 4.7)
 
 genSub-R1-0-0: Initial release used in LCLS Injector and BC1.
