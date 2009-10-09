@@ -94,19 +94,19 @@ static void monitor( genSubRecord *, int );
 static long do_sub( genSubRecord * );
 static long findField( int, struct dbAddr *, long *, long );
 
-#define ARG_MAX        21
+#define GENSUB_ARG_MAX        21
 #define MAX_ARRAY_SIZE 10000000
 #ifndef FLDNAME_SZ
 # define FLDNAME_SZ 4
 #endif
 
 /* These are the names of the Input fields */
-static char Ifldnames[ARG_MAX][FLDNAME_SZ+1] =
+static char Ifldnames[GENSUB_ARG_MAX][FLDNAME_SZ+1] =
   { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
     "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U" };
 
 /* These are the names of the Output fields */
-static char Ofldnames[ARG_MAX][FLDNAME_SZ+1] =
+static char Ofldnames[GENSUB_ARG_MAX][FLDNAME_SZ+1] =
   { "VALA", "VALB", "VALC", "VALD", "VALE", "VALF", "VALG", 
     "VALH", "VALI", "VALJ", "VALK", "VALL", "VALM", "VALN",
     "VALO", "VALP", "VALQ", "VALR", "VALS", "VALT", "VALU" };
@@ -115,7 +115,7 @@ static char Ofldnames[ARG_MAX][FLDNAME_SZ+1] =
 static int sizeofTypes[] = {0, 1, 1, 2, 2, 4, 4, 4, 8, 2};
 
 /* This is here so that input link checking can be switched on from the shell */
-int CHECKgensubLINKS = 0;
+int CHECKgensubLINKS = 1;
 
 
 static long init_record( genSubRecord *pgsub, int pass )
@@ -135,7 +135,7 @@ static long init_record( genSubRecord *pgsub, int pass )
   unsigned long  num;
   struct link    *plinkin;
   struct link    *plinkout;
-  char           fldnames[ARG_MAX][FLDNAME_SZ+1];
+  char           fldnames[GENSUB_ARG_MAX][FLDNAME_SZ+1];
 
   status = 0;
   if( pass == 0 )
@@ -150,7 +150,7 @@ static long init_record( genSubRecord *pgsub, int pass )
         valptr = &pgsub->a;
         ovlptr = NULL;
         nelptr = &pgsub->noa;
-        memcpy( fldnames, Ifldnames, ARG_MAX*(FLDNAME_SZ+1) );
+        memcpy( fldnames, Ifldnames, GENSUB_ARG_MAX*(FLDNAME_SZ+1) );
       }
       else           /* Output fields */
       {
@@ -159,11 +159,11 @@ static long init_record( genSubRecord *pgsub, int pass )
         valptr = &pgsub->vala;
         ovlptr = &pgsub->ovla;
         nelptr = &pgsub->nova;
-        memcpy( fldnames, Ofldnames, ARG_MAX*(FLDNAME_SZ+1) );
+        memcpy( fldnames, Ofldnames, GENSUB_ARG_MAX*(FLDNAME_SZ+1) );
       }
       totptr = &pgsub->tova;
 
-      for( i=0; i<ARG_MAX; i++, ufunct+=40, typptr++, valptr++, nelptr++, totptr++ )
+      for( i=0; i<GENSUB_ARG_MAX; i++, ufunct+=40, typptr++, valptr++, nelptr++, totptr++ )
       {
         if( *nelptr <= 0 )
           *nelptr = 1;
@@ -197,8 +197,8 @@ static long init_record( genSubRecord *pgsub, int pass )
                 *ovlptr = (char *)calloc( *nelptr, *totptr );
               *nelptr = num;
               *totptr = num;
-#if DEBUG
-              printf("Link(%s): Address = 0x%x, Bytes = %d\n", fldnames[i], (unsigned int)(*valptr), *totptr );
+#if DEBUG >= 1
+              printf("Link(%s): Address = 0x%x, Bytes = %ld\n", fldnames[i], (unsigned int)(*valptr), *totptr );
 #endif
             }
           }
@@ -219,8 +219,8 @@ static long init_record( genSubRecord *pgsub, int pass )
               if( j == 1 )
                 *ovlptr = (char *)calloc( *nelptr, MAX_STRING_SIZE );
               *totptr = num;
-#if DEBUG
-              printf("Link(%s): Address = 0x%x, Bytes = %d\n", fldnames[i], (unsigned int)(*valptr), *totptr);
+#if DEBUG >= 1
+              printf("Link(%s): Address = 0x%x, Bytes = %ld\n", fldnames[i], (unsigned int)(*valptr), *totptr);
 #endif
             }
           }
@@ -240,8 +240,8 @@ static long init_record( genSubRecord *pgsub, int pass )
               if( j == 1 )
                 *ovlptr = (char *)calloc( *nelptr, sizeofTypes[*typptr] );
               *totptr = num;
-#if DEBUG
-              printf("Link(%s): Address = 0x%x, Bytes = %d\n", fldnames[i], (unsigned int)(*valptr), *totptr);
+#if DEBUG >= 1
+              printf("Link(%s): Address = 0x%x, Bytes = %ld\n", fldnames[i], (unsigned int)(*valptr), *totptr);
 #endif
             }
           }
@@ -289,12 +289,12 @@ static long init_record( genSubRecord *pgsub, int pass )
       typptr  = &pgsub->fta;
       valptr  = &pgsub->a;
       nelptr  = &pgsub->noa;
-      for( i=0; i<ARG_MAX; i++, plinkin++, typptr++, valptr++, nelptr++ )
+      for( i=0; i<GENSUB_ARG_MAX; i++, plinkin++, typptr++, valptr++, nelptr++ )
       {
         switch( (*plinkin).type ) 
         {
           case (CONSTANT):
-#if DEBUG
+#if DEBUG >= 1
             printf("Input Link %s is a CONSTANT\n", Ifldnames[i] );
 #endif
             if( *nelptr < 2 )
@@ -311,19 +311,19 @@ static long init_record( genSubRecord *pgsub, int pass )
             break;
 
           case (PV_LINK):
-#if DEBUG
+#if DEBUG >= 1
             printf("Input Link %s is a PV_LINK\n", Ifldnames[i] );
 #endif
             break;
 
           case (CA_LINK):
-#if DEBUG
+#if DEBUG >= 1
             printf("Input Link %s is a CA_LINK\n", Ifldnames[i] );
 #endif
             break;
 
           case (DB_LINK):
-#if DEBUG
+#if DEBUG >= 1
             printf("Input Link %s is a DB_LINK\n", Ifldnames[i] );
 #endif
             break;
@@ -344,30 +344,30 @@ static long init_record( genSubRecord *pgsub, int pass )
       plinkout = &pgsub->outa;
       typptr   = &pgsub->ftva;
       valptr   = &pgsub->vala;
-      for( i=0; i<ARG_MAX; i++, plinkout++, typptr++, valptr++ )
+      for( i=0; i<GENSUB_ARG_MAX; i++, plinkout++, typptr++, valptr++ )
       {
         switch( (*plinkout).type ) 
         {
           case (CONSTANT):
-#if DEBUG
+#if DEBUG >= 1
             printf("Output Link %s is a CONSTANT\n", Ofldnames[i] );
 #endif
             break;
 
           case (PV_LINK):
-#if DEBUG
+#if DEBUG >= 1
             printf("Output Link %s is a PV_LINK\n", Ofldnames[i] );
 #endif
             break;
 
           case (CA_LINK):
-#if DEBUG
+#if DEBUG >= 1
             printf("Output Link %s is a CA_LINK\n", Ofldnames[i] );
 #endif
             break;
 
           case (DB_LINK):
-#if DEBUG
+#if DEBUG >= 1
             printf("Output Link %s is a DB_LINK\n", Ofldnames[i] );
 #endif
             break;
@@ -407,7 +407,7 @@ static long init_record( genSubRecord *pgsub, int pass )
           if( pgsub->snam[0] != '\0' )
           {
             sub_addr = (SUBFUNCPTR)registryFunctionFind(pgsub->snam);
-#if DEBUG
+#if DEBUG >= 1
             printf("Calling registryFunctionFind from init_record\n");
 #endif
             if( sub_addr == NULL )
@@ -461,7 +461,7 @@ static long process( genSubRecord *pgsub )
 
           strcpy(pgsub->onam, pgsub->snam);
           sub_addr = (SUBFUNCPTR)registryFunctionFind(pgsub->snam);
-#if DEBUG
+#if DEBUG >= 2
           printf("Calling registryFunctionFind from process\n");
 #endif
           if( sub_addr == NULL)
@@ -484,7 +484,7 @@ static long process( genSubRecord *pgsub )
     valptr   = &pgsub->a;
     nelptr   = &pgsub->noa;
     typptr   = &pgsub->fta;
-    for( i=0; i<ARG_MAX; i++, plinkin++, valptr++, nelptr++, typptr++ )
+    for( i=0; i<GENSUB_ARG_MAX; i++, plinkin++, valptr++, nelptr++, typptr++ )
     {
       nRequest = *nelptr;
       options  = 0;
@@ -501,6 +501,8 @@ static long process( genSubRecord *pgsub )
               printf(" ");
             printf(", Disconnected Link (%s) to \"%s\"\n", Ifldnames[i], plinkin->value.pv_link.pvname );
           }
+		  /* Only check once */
+		  CHECKgensubLINKS	= 1;
         }
         break;
       }
@@ -515,6 +517,8 @@ static long process( genSubRecord *pgsub )
 
   if( !status )
     pgsub->val = do_sub(pgsub);
+  else
+    printf( "GenSub %s bypassing user routine due to input link errors!\n", pgsub->name );
 
   /* Put the values on the output links */
 
@@ -524,7 +528,7 @@ static long process( genSubRecord *pgsub )
     valptr   = &pgsub->vala;
     nelptr   = &pgsub->nova;
     typptr   = &pgsub->ftva;
-    for( i=0; i<ARG_MAX; i++, plinkout++, valptr++, nelptr++, typptr++ )
+    for( i=0; i<GENSUB_ARG_MAX; i++, plinkout++, valptr++, nelptr++, typptr++ )
     {
       nRequest = *nelptr;
       status   = dbPutLink( plinkout, *typptr, *valptr, nRequest );
@@ -575,7 +579,7 @@ static long get_precision( struct dbAddr *paddr, long *precision )
 
 static long get_value( genSubRecord *pgsub, struct valueDes *pvdes )
 {
-#if DEBUG
+#if DEBUG >= 2
     printf("Calling get_value...\n");
 #endif
     pvdes->no_elements = 1;
@@ -633,12 +637,12 @@ static void monitor( genSubRecord *pgsub, int reset )
         valptr = &pgsub->vala;
         ovlptr = &pgsub->ovla;
         totptr = &pgsub->tova;
-        for( i=0; i<ARG_MAX; i++, valptr++, ovlptr++, totptr++ )
+        for( i=0; i<GENSUB_ARG_MAX; i++, valptr++, ovlptr++, totptr++ )
         {
           if( memcmp(*ovlptr, *valptr, *totptr) )
           {
-#if DEBUG
-            printf("Differences in field %s were found. Total Bytes = %d\n", Ofldnames[i], *totptr);
+#if DEBUG >= 3
+            printf("Differences in field %s were found. Total Bytes = %ld\n", Ofldnames[i], *totptr);
 #endif
             memcpy( *ovlptr, *valptr, *totptr );
             db_post_events(pgsub, *valptr, monitor_mask);
@@ -651,7 +655,7 @@ static void monitor( genSubRecord *pgsub, int reset )
       if(monitor_mask)
       {
         valptr = &pgsub->vala;
-        for( i=0; i<ARG_MAX; i++, valptr++ )
+        for( i=0; i<GENSUB_ARG_MAX; i++, valptr++ )
           db_post_events(pgsub, *valptr, monitor_mask);
       }
     }
@@ -698,7 +702,7 @@ static long cvt_dbaddr( struct dbAddr *paddr )
   long no_elements;
   long nNew;
 
-#if DEBUG
+#if DEBUG >= 2
   printf("Calling cvt_dbaddr...\n");
 #endif
 
@@ -717,7 +721,7 @@ static long get_array_info( struct dbAddr *paddr, long *no_elements, long *offse
   int  flag;
   long nNew;
 
-#if DEBUG
+#if DEBUG >= 2
   printf("Calling get_array_info...\n");
 #endif
   *offset = 0;
@@ -736,7 +740,7 @@ static long put_array_info( struct dbAddr *paddr, long nNew )
   int  flag;
   long no_elements;
 
-#if DEBUG
+#if DEBUG >= 2
   printf("Calling put_array_info...\n");
 #endif
   flag  = 3;
@@ -760,7 +764,7 @@ static long special( struct dbAddr *paddr, int after )
       if( pgsub->snam[0] != '\0' )
       {
         sub_addr = (SUBFUNCPTR)registryFunctionFind(pgsub->snam);
-#if DEBUG
+#if DEBUG >= 2
         printf("Calling registryFunctionFind from special\n");
 #endif
         if( sub_addr == NULL)
