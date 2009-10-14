@@ -501,8 +501,12 @@ static long process( genSubRecord *pgsub )
               printf(" ");
             printf(", Disconnected Link (%s) to \"%s\"\n", Ifldnames[i], plinkin->value.pv_link.pvname );
           }
-		  /* Only check once */
-		  CHECKgensubLINKS	= 1;
+
+  		  if( CHECKgensubLINKS == 1 )
+          {
+			  /* Only check once */
+			  CHECKgensubLINKS	= 0;
+          }
         }
         break;
       }
@@ -517,7 +521,7 @@ static long process( genSubRecord *pgsub )
 
   if( !status )
     pgsub->val = do_sub(pgsub);
-  else
+  else if( CHECKgensubLINKS >= 2 )
     printf( "GenSub %s bypassing user routine due to input link errors!\n", pgsub->name );
 
   /* Put the values on the output links */
