@@ -23,6 +23,16 @@
  *
  */
 
+/*
+ * MCB - Sigh.  Let's get this out of the way right now.  In 3.14.9, noa and tova are unsigned long, but
+ * in 3.14.12, they are epicsUInt32.  Therefore, let's make a define to deal with this.
+ */
+#if 1
+#define genSubLong     unsigned long
+#else
+#define genSubLong     epicsUInt32
+#endif
+
 #define DEBUG   0
 #define VERSION 1.6
 
@@ -130,8 +140,8 @@ static long init_record( genSubRecord *pgsub, int pass )
   unsigned short *typptr;
   void           **valptr;
   void           **ovlptr;
-  unsigned long  *nelptr;
-  unsigned long  *totptr;
+  genSubLong     *nelptr;
+  genSubLong     *totptr;
   unsigned long  num;
   struct link    *plinkin;
   struct link    *plinkout;
@@ -416,7 +426,7 @@ static long init_record( genSubRecord *pgsub, int pass )
               status = S_db_BadSub;
             }
             else
-              pgsub->sadr = (long)sub_addr;
+              pgsub->sadr = (void *)sub_addr;
           }
         }
       }
@@ -435,8 +445,8 @@ static long process( genSubRecord *pgsub )
   long           status;
   struct link    *plinkin;
   struct link    *plinkout;
-  unsigned short *typptr;
-  unsigned long  *nelptr;
+  epicsEnum16    *typptr;
+  genSubLong     *nelptr;
   long           nRequest;
   long           options;
   void           **valptr;
@@ -470,7 +480,7 @@ static long process( genSubRecord *pgsub )
             status = S_db_BadSub;
           }
           else
-            pgsub->sadr = (long)sub_addr;
+            pgsub->sadr = (void *)sub_addr;
         }
       }
     }
@@ -597,7 +607,7 @@ static void monitor( genSubRecord *pgsub, int reset )
 {
   int            i;
   unsigned short monitor_mask;
-  unsigned long  *totptr;
+  genSubLong     *totptr;
   void           **valptr;
   void           **ovlptr;
 
@@ -677,7 +687,7 @@ static long do_sub( genSubRecord *pgsub )
 
   if( pgsub->snam[0] != '\0' )
   {
-    psubroutine = (SUBFUNCPTR)((void *)pgsub->sadr);
+    psubroutine = (SUBFUNCPTR)(pgsub->sadr);
     if( psubroutine == NULL)
     {
       recGblRecordError(S_db_BadSub,(void *)pgsub,"genSubRecord(process) NO SUBROUTINE");
@@ -778,7 +788,7 @@ static long special( struct dbAddr *paddr, int after )
         }
         else
         {
-          pgsub->sadr = (long)sub_addr;
+          pgsub->sadr = (void *)sub_addr;
           monitor(pgsub, 0);
         }
       }
