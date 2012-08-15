@@ -27,7 +27,7 @@
  * MCB - Sigh.  Let's get this out of the way right now.  In 3.14.9, noa and tova are unsigned long, but
  * in 3.14.12, they are epicsUInt32.  Therefore, let's make a define to deal with this.
  */
-#if 1
+#if 0
 #define genSubLong     unsigned long
 #else
 #define genSubLong     epicsUInt32
