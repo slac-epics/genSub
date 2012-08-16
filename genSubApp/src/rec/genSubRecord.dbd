@@ -25,15 +25,17 @@ recordtype(genSub) {
 		special(SPC_NOMOD)
 		interest(1)
 	}
-	field(SADR,DBF_LONG) {
+	field(SADR,DBF_NOACCESS) {
 		prompt("Subroutine Address")
 		special(SPC_NOMOD)
 		interest(1)
+		extra("void *           sadr")
 	}
-	field(OSAD,DBF_LONG) {
+	field(OSAD,DBF_NOACCESS) {
 		prompt("Old Subr. Address")
 		special(SPC_NOMOD)
 		interest(1)
+		extra("void *           osad")
 	}
 	field(LFLG,DBF_MENU) {
 		prompt("Link Flag")
@@ -364,7 +366,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *a")
 	}
 	field(B,DBF_NOACCESS) {
@@ -372,7 +373,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *b")
 	}
 	field(C,DBF_NOACCESS) {
@@ -380,7 +380,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *c")
 	}
 	field(D,DBF_NOACCESS) {
@@ -388,7 +387,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *d")
 	}
 	field(E,DBF_NOACCESS) {
@@ -396,7 +394,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *e")
 	}
 	field(F,DBF_NOACCESS) {
@@ -404,7 +401,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *f")
 	}
 	field(G,DBF_NOACCESS) {
@@ -412,7 +408,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *g")
 	}
 	field(H,DBF_NOACCESS) {
@@ -420,7 +415,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *h")
 	}
 	field(I,DBF_NOACCESS) {
@@ -428,7 +422,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *i")
 	}
 	field(J,DBF_NOACCESS) {
@@ -437,7 +430,6 @@ recordtype(genSub) {
 		special(SPC_DBADDR)
 		pp(TRUE)
 		interest(1)
-		size(4)
 		extra("void *j")
 	}
 	field(K,DBF_NOACCESS) {
@@ -445,7 +437,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *k")
 	}
 	field(L,DBF_NOACCESS) {
@@ -453,7 +444,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *l")
 	}
 	field(M,DBF_NOACCESS) {
@@ -461,7 +451,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *m")
 	}
 	field(N,DBF_NOACCESS) {
@@ -469,7 +458,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *n")
 	}
 	field(O,DBF_NOACCESS) {
@@ -477,7 +465,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *o")
 	}
 	field(P,DBF_NOACCESS) {
@@ -485,7 +472,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *p")
 	}
 	field(Q,DBF_NOACCESS) {
@@ -493,7 +479,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *q")
 	}
 	field(R,DBF_NOACCESS) {
@@ -501,7 +486,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *r")
 	}
 	field(S,DBF_NOACCESS) {
@@ -509,7 +493,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *s")
 	}
 	field(T,DBF_NOACCESS) {
@@ -517,7 +500,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *t")
 	}
 	field(U,DBF_NOACCESS) {
@@ -525,7 +507,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *u")
 	}
 	field(FTA,DBF_MENU) {
@@ -1100,7 +1081,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *vala")
 	}
 	field(VALB,DBF_NOACCESS) {
@@ -1108,7 +1088,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *valb")
 	}
 	field(VALC,DBF_NOACCESS) {
@@ -1116,7 +1095,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *valc")
 	}
 	field(VALD,DBF_NOACCESS) {
@@ -1124,7 +1102,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *vald")
 	}
 	field(VALE,DBF_NOACCESS) {
@@ -1132,7 +1109,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *vale")
 	}
 	field(VALF,DBF_NOACCESS) {
@@ -1140,7 +1116,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *valf")
 	}
 	field(VALG,DBF_NOACCESS) {
@@ -1148,7 +1123,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *valg")
 	}
 	field(VALH,DBF_NOACCESS) {
@@ -1156,7 +1130,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *valh")
 	}
 	field(VALI,DBF_NOACCESS) {
@@ -1164,7 +1137,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *vali")
 	}
 	field(VALJ,DBF_NOACCESS) {
@@ -1172,7 +1144,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *valj")
 	}
 	field(VALK,DBF_NOACCESS) {
@@ -1180,7 +1151,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *valk")
 	}
 	field(VALL,DBF_NOACCESS) {
@@ -1188,7 +1158,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *vall")
 	}
 	field(VALM,DBF_NOACCESS) {
@@ -1196,7 +1165,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *valm")
 	}
 	field(VALN,DBF_NOACCESS) {
@@ -1204,7 +1172,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *valn")
 	}
 	field(VALO,DBF_NOACCESS) {
@@ -1212,7 +1179,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *valo")
 	}
 	field(VALP,DBF_NOACCESS) {
@@ -1220,7 +1186,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *valp")
 	}
 	field(VALQ,DBF_NOACCESS) {
@@ -1228,7 +1193,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *valq")
 	}
 	field(VALR,DBF_NOACCESS) {
@@ -1236,7 +1200,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *valr")
 	}
 	field(VALS,DBF_NOACCESS) {
@@ -1244,7 +1207,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *vals")
 	}
 	field(VALT,DBF_NOACCESS) {
@@ -1252,7 +1214,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *valt")
 	}
 	field(VALU,DBF_NOACCESS) {
@@ -1260,7 +1221,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_DBADDR)
 		interest(1)
-		size(4)
 		extra("void *valu")
 	}
 	field(OVLA,DBF_NOACCESS) {
@@ -1268,7 +1228,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovla")
 	}
 	field(OVLB,DBF_NOACCESS) {
@@ -1276,7 +1235,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovlb")
 	}
 	field(OVLC,DBF_NOACCESS) {
@@ -1284,7 +1242,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovlc")
 	}
 	field(OVLD,DBF_NOACCESS) {
@@ -1292,7 +1249,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovld")
 	}
 	field(OVLE,DBF_NOACCESS) {
@@ -1300,7 +1256,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovle")
 	}
 	field(OVLF,DBF_NOACCESS) {
@@ -1308,7 +1263,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovlf")
 	}
 	field(OVLG,DBF_NOACCESS) {
@@ -1316,7 +1270,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovlg")
 	}
 	field(OVLH,DBF_NOACCESS) {
@@ -1324,7 +1277,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovlh")
 	}
 	field(OVLI,DBF_NOACCESS) {
@@ -1332,7 +1284,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovli")
 	}
 	field(OVLJ,DBF_NOACCESS) {
@@ -1340,7 +1291,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovlj")
 	}
 	field(OVLK,DBF_NOACCESS) {
@@ -1348,7 +1298,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovlk")
 	}
 	field(OVLL,DBF_NOACCESS) {
@@ -1356,7 +1305,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovll")
 	}
 	field(OVLM,DBF_NOACCESS) {
@@ -1364,7 +1312,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovlm")
 	}
 	field(OVLN,DBF_NOACCESS) {
@@ -1372,7 +1319,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovln")
 	}
 	field(OVLO,DBF_NOACCESS) {
@@ -1380,7 +1326,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovlo")
 	}
 	field(OVLP,DBF_NOACCESS) {
@@ -1388,7 +1333,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovlp")
 	}
 	field(OVLQ,DBF_NOACCESS) {
@@ -1396,7 +1340,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovlq")
 	}
 	field(OVLR,DBF_NOACCESS) {
@@ -1404,7 +1347,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovlr")
 	}
 	field(OVLS,DBF_NOACCESS) {
@@ -1412,7 +1354,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovls")
 	}
 	field(OVLT,DBF_NOACCESS) {
@@ -1420,7 +1361,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovlt")
 	}
 	field(OVLU,DBF_NOACCESS) {
@@ -1428,7 +1368,6 @@ recordtype(genSub) {
 		asl(ASL0)
 		special(SPC_NOMOD)
 		interest(1)
-		size(4)
 		extra("void *ovlu")
 	}
 	field(FTVA,DBF_MENU) {
