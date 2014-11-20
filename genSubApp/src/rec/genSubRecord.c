@@ -450,6 +450,7 @@ static long process( genSubRecord *pgsub )
   long           nRequest;
   long           options;
   void           **valptr;
+  static	int		fShowGenSubLinkError	= 1;
 
   pgsub->pact = TRUE;
   status      = 0;
@@ -501,7 +502,7 @@ static long process( genSubRecord *pgsub )
       status   = dbGetLink( plinkin, *typptr, *valptr, &options, &nRequest );
       if( status )
       {
-        if( CHECKgensubLINKS )
+        if( fShowGenSubLinkError || (CHECKgensubLINKS > 1) )
         {
           if( !dbIsLinkConnected(plinkin) )
           {
@@ -510,12 +511,13 @@ static long process( genSubRecord *pgsub )
             for( j=0; j<PVNAME_STRINGSZ-len; j++ )
               printf(" ");
             printf(", Disconnected Link (%s) to \"%s\"\n", Ifldnames[i], plinkin->value.pv_link.pvname );
+        	fShowGenSubLinkError = 0;
           }
 
-  		  if( CHECKgensubLINKS == 1 )
+  		  if( CHECKgensubLINKS < 3 )
           {
-			  /* Only check once */
-			  CHECKgensubLINKS	= 0;
+			  /* Decrement check count */
+			  CHECKgensubLINKS--;
           }
         }
         break;
@@ -531,8 +533,10 @@ static long process( genSubRecord *pgsub )
 
   if( !status )
     pgsub->val = do_sub(pgsub);
-  else if( CHECKgensubLINKS >= 2 )
+  else if( CHECKgensubLINKS & 1 )
     printf( "GenSub %s bypassing user routine due to input link errors!\n", pgsub->name );
+
+  recGblGetTimeStamp( pgsub );
 
   /* Put the values on the output links */
 
@@ -560,8 +564,6 @@ static long process( genSubRecord *pgsub )
   }
 
   /* These routines should always be called */
-
-  recGblGetTimeStamp( pgsub );
   monitor(pgsub, 1);
   recGblFwdLink(pgsub);
   pgsub->pact = FALSE;

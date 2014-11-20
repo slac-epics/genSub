@@ -21,6 +21,14 @@
 #
 #==============================================================
 #
+bhill 11/14/2014:
+	Moved timestamp before output records are updated so they
+	will get an updated timestamp if they are set to TSEL from
+	the genSub record.
+bhill 6/20/2014:
+	Modified SADR field in genSubRecord.dbd to be a proper prototype.
+	Modeled after the SADR field in base's aSubRecord.dbd
+
 genSub-R1-6-1-lcls2:
 	modifications needed to bring the module to EPICS R3-14-9 standard
 

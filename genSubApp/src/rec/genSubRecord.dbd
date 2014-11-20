@@ -25,11 +25,12 @@ recordtype(genSub) {
 		special(SPC_NOMOD)
 		interest(1)
 	}
+	%struct genSubRecord;
 	field(SADR,DBF_NOACCESS) {
 		prompt("Subroutine Address")
 		special(SPC_NOMOD)
-		interest(1)
-		extra("void *           sadr")
+		interest(2)
+		extra("long (*sadr)(struct genSubRecord *)")
 	}
 	field(OSAD,DBF_NOACCESS) {
 		prompt("Old Subr. Address")
