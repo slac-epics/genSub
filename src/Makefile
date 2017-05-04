@@ -1,8 +1,10 @@
-TOP = ../../..
-
+TOP=..
 include $(TOP)/configure/CONFIG
 
-LIBRARY_IOC += genSub
+USR_CFLAGS_Linux += -Wno-address
+
+LIBRARY_IOC        += genSub
+geminiRecords_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 DBDINC      += genSubRecord.h
 DBD         += genSubRecord.dbd

@@ -1,25 +1,25 @@
-#include <stdio.h>
+#include <vxWorks.h>
+#include <types.h>
 #include <math.h>
 #include <time.h>
 #include <stdlib.h>
+#include <stdioLib.h>
 
 #include <dbEvent.h>
 #include <dbDefs.h>
 #include <dbCommon.h>
-#include <registryFunction.h>
-#include <epicsExport.h>
 #include <recSup.h>
 #include <genSubRecord.h>
 #include <pinfo.h>
 
 static int messcounter = 0;
 
-long setupRemoteReceive( genSubRecord *pgsub )
+long setup( struct genSubRecord *pgsub )
 {
   return( sizeof(struct pinfo) );
 }
 
-long remoteReceive( genSubRecord *pgsub )
+long listen( struct genSubRecord *pgsub )
 {
   double       *ptr;
   struct pinfo *pex;
@@ -44,15 +44,10 @@ long remoteReceive( genSubRecord *pgsub )
   printf("\n");
 
   printf("\nReceiving...through Link D\n");
-  printf("%ld\n", *((long *)pgsub->d));
+  printf("%d\n", *((long *)pgsub->d));
 
   /* This shows that events are posted on VAL */
 
   messcounter++;
   return(messcounter);
 }
-
-
-/* Register these symbols for use by IOC code */
-
-epicsRegisterFunction( remoteReceive );
